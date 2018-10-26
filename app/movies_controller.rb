@@ -6,9 +6,9 @@
 # end                              # end
 
 def can_be_instantiated_and_then_saved
-  movie = __
+  movie = Movie.new
   movie.title = "This is a title."
-  __
+  movie.save
 end
 
 def can_be_created_with_a_hash_of_attributes
@@ -20,33 +20,40 @@ def can_be_created_with_a_hash_of_attributes
       lead: "Paul Newman",
       in_theaters: false
   }
-  movie = __
+  movie = Movie.create(attributes)
 end
 
-def can_be_created_in_a_block(args = __)
+def can_be_created_in_a_block(args = {})
   # If no arguments are passed, use default values:
   # title == "Home Alone"
   # release_date == 1990
   
   Movie.create do |m|
-    __
+    if args.empty?
+      m.title = "Home Alone"
+      m.release_date = 1990
+    else 
+      args.each {|key, value|
+        m.send("#{key}=", value)
+      }
+    end
   end
 end
 
 def can_get_the_first_item_in_the_database
-  __
+  Movie.all.first
 end
 
 def can_get_the_last_item_in_the_database
-  __
+  Movie.all.last
 end
 
 def can_get_size_of_the_database
-  __
+  Movie.all.length
 end
 
 def can_find_the_first_item_from_the_database_using_id
-  __
+  Movie.all.find {|m| m.id == 1}
 end
 
 def can_find_by_multiple_attributes
@@ -54,7 +61,7 @@ def can_find_by_multiple_attributes
   # title == "Title"
   # release_date == 2000
   # director == "Me"
-  __
+  Movie.all.find {|m| m.title == "Title" && m.release_date == 2000 && m.director == "Me"}
 end
 
 def can_find_using_where_clause_and_be_sorted
@@ -65,10 +72,10 @@ end
 
 def can_be_found_updated_and_saved
   # Updtate the title "Awesome Flick" to "Even Awesomer Flick", save it, then return it
-  Movie.create(title: "Awesome Flick")
-  __
-  __
-  __
+  m = Movie.create(title: "Awesome Flick")
+  m.title = "Even Awesomer Flick"
+  m.save
+  m
 end
 
 def can_update_using_update_method
