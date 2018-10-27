@@ -79,8 +79,8 @@ def can_be_found_updated_and_saved
   Movie.create(title: "Awesome Flick")
   Movie.all.each {|m| 
   if m.title = "Awesome Flick"
-    m.title = "Even Awesomer Flick"
-    m.save!
+     m.title = "Even Awesomer Flick"
+     m.save!
   end
   }
   
