@@ -79,6 +79,7 @@ def can_be_found_updated_and_saved
   Movie.create(title: "Awesome Flick")
   binding.pry
   Movie.all.last.title = "Even Awesomer Flick"
+  binding.pry
   Movie.all.last.save
   binding.pry
 end
