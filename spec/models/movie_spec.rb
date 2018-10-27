@@ -128,7 +128,7 @@ describe 'Movie' do
         expect {
           can_be_found_updated_and_saved
           movie.reload
-          bindin.pry
+          binding.pry
         }.to change{ movie.title }.from("Awesome Flick").to("Even Awesomer Flick")
       end
 
