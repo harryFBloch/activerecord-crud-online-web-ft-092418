@@ -68,7 +68,7 @@ def can_find_using_where_clause_and_be_sorted
   # For this test return all movies released after 2002 and ordered by 
   # release date descending
   movie_array = Movie.all.map {|m| m if m.release_date > 2002 }
-  movie_array.flatten.compact
+  movie_array = movie_array.compact
   movie_array.sort_by {|m| 
   binding.pry
   m.release_date}.reverse
