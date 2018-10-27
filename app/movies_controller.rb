@@ -80,7 +80,7 @@ def can_be_found_updated_and_saved
   m = Movie.all.last
   m.title = "Even Awesomer Flick"
   binding.pry
-  m.save
+  m.save!
   binding.pry
 end
 
