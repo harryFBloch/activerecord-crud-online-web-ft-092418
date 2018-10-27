@@ -77,10 +77,14 @@ end
 def can_be_found_updated_and_saved
   # Updtate the title "Awesome Flick" to "Even Awesomer Flick", save it, then return it
   Movie.create(title: "Awesome Flick")
-  m = Movie.all.last
-  m.title = "Even Awesomer Flick"
-  m.save!
-  m
+  Movie.all.each {|m| 
+    if  m.title == "Awesome Flick"
+        m.title = "Even Awesomer Flick"
+        m.save!
+    end
+  }
+ 
+
 end
 
 def can_update_using_update_method
